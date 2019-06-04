@@ -53,8 +53,11 @@ export default class App extends React.Component {
         },
       });
     } else {
+      const randomIntFromInterval = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      };
       $.ajax({
-        url: '/room?id=1',
+        url: `/room?id=${randomIntFromInterval(1, 100)}`,
         type: 'GET',
         error: (err) => {
           console.log(err);
