@@ -15,6 +15,27 @@ https://github.com/hacker-home/Airbnb-booking-proxy
 
 ## Usage
 
+> API CRUD Routes and information
+
+Rooms
+| API Endpoints  | Request Type | Input | Output | Description  |
+| ------------- | ------------- | ------------- | ------------- | ------------- | 
+| /room/:roomId | GET           | Room ID  | Room listing  | Get the room listing features for a specifc ID |
+| /room/:roomId | POST          | Specific features for room listing. Refer to rooms schema | STATUS CODE 201  | Create a Room Listing | 
+| /room/:roomId | PATCH         | Room ID  | STATUS CODE 200  | Update a Room Listing  |
+| /room/:roomId | DELETE        | Room ID  | STATUS CODE 200  | Delete a Room Listing |
+
+
+Bookings
+| API Endpoints  | Request Type | Input | Output | Description  |
+| ------------- | ------------- | ------------- | ------------- | ------------- | 
+| /booking/:bookingId | GET           | Booking ID  | Booking listing  | Get the booking listing features for a specifc ID |
+| /booking/:bookingId | POST          | Specific features for book listing. Refer to bookings schema | STATUS CODE 201  | Create a Book Listing  | 
+| /booking/:bookingId | PATCH         | Booking ID  | STATUS CODE 200  | Update a Book Listing  |
+| /booking/:bookingId | DELETE        | Booking ID  | STATUS CODE 200  | Delete a Book Listing |
+
+
+
 > This module is a booking portal on Airbnb listing page
 
 If you have any questions or feedbacks, please feel free to contact me!
