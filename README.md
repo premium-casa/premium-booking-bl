@@ -17,16 +17,15 @@ https://github.com/hacker-home/Airbnb-booking-proxy
 
 > API CRUD Routes and information
 
-Rooms
+### Rooms
 | API Endpoints  | Request Type | Input | Output | Description  |
 | ------------- | ------------- | ------------- | ------------- | ------------- | 
-| /room/:roomId | GET           | Room ID  | Room listing  | Get the room listing features for a specifc ID |
+| /room/:roomId | GET | Room ID  | Room listing  | Get the room listing features for a specifc ID |
 | /room/:roomId | POST          | Specific features for room listing. Refer to rooms schema | STATUS CODE 201  | Create a Room Listing | 
 | /room/:roomId | PATCH         | Room ID  | STATUS CODE 200  | Update a Room Listing  |
 | /room/:roomId | DELETE        | Room ID  | STATUS CODE 200  | Delete a Room Listing |
 
-
-Bookings
+### Bookings
 | API Endpoints  | Request Type | Input | Output | Description  |
 | ------------- | ------------- | ------------- | ------------- | ------------- | 
 | /booking/:bookingId | GET           | Booking ID  | Booking listing  | Get the booking listing features for a specifc ID |
