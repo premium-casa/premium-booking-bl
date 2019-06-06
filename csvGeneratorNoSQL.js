@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-console */
 /* eslint-disable comma-dangle */
 /* eslint-disable operator-linebreak */
@@ -15,7 +16,7 @@ const wstream1 = fs.createWriteStream('noSQLBookingData.csv');
 
 wstream1.write('id,roomname,price,cleaning_fee,service_fee,tax,max_adults,max_child,max_infants,min_night,max_night,rating,num_reviews,bookings\n');
 
-for (let i = 1; i <= 1; i += 1) {
+for (let i = 1; i <= 1000000; i += 1) {
   wstream1.write(
     i + ',' +
     faker.name.findName() + ' ' + roomNameAppendix[randomNum(0, roomNameAppendix.length - 1)] + ', ' +
@@ -32,7 +33,7 @@ for (let i = 1; i <= 1; i += 1) {
     randomNum(0, 100) + ',"{'
   );
   let startDate = moment().toDate().getTime();
-  let num = randomNum(5, 10);
+  const num = randomNum(5, 10);
   for (let j = 1; j <= num; j += 1) {
     const chkIn = startDate + (day * randomNum(0, 5));
     const chkOut = chkIn + (day * randomNum(2, 5));
