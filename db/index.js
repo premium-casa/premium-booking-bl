@@ -13,7 +13,9 @@ const Room = sequelize.define('rooms', {
   cleaning_fee: Sequelize.INTEGER,
   service_fee: Sequelize.INTEGER,
   tax: Sequelize.INTEGER,
-  max_guest: Sequelize.STRING,
+  max_adults: Sequelize.INTEGER,
+  max_child: Sequelize.INTEGER,
+  max_infant: Sequelize.INTEGER,
   min_night: Sequelize.INTEGER,
   max_night: Sequelize.INTEGER,
   ratings: Sequelize.DECIMAL(2, 1),
@@ -22,10 +24,11 @@ const Room = sequelize.define('rooms', {
 
 const Booking = sequelize.define('bookings', {
   email: Sequelize.STRING,
-  guests: Sequelize.STRING,
+  guest_adults: Sequelize.INTEGER,
+  guest_child: Sequelize.INTEGER,
+  guest_infant: Sequelize.INTEGER,
   check_in: Sequelize.DATE,
   check_out: Sequelize.DATE,
-  createdAt: Sequelize.DATE,
   roomId: {
     type: Sequelize.INTEGER,
     references: {

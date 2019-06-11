@@ -7,3 +7,5 @@ coverage
 roomdata.csv
 bookingdata.csv
 noSQLBookingData.csv
+.DS_Store
+clover.xml

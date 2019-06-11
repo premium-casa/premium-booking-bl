@@ -8,7 +8,8 @@
     "start": "nodemon server/index.js",
     "build": "webpack --config webpack.config.prod.js",
     "react-dev": "webpack -d --watch",
-    "seed": "node db/room_generater.js && node db/booking_generater.js"
+    "seed": "node db/room_generater.js && node db/booking_generater.js",
+    "csv": "node --max-old-space-size=4096 csvGen2.js && node --max-old-space-size=4096 csvGen.js"
   },
   "lint-staged": {
     "*.js": [
@@ -36,6 +37,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "csv-write-stream": "^2.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
     "express": "^4.17.0",
@@ -46,10 +48,10 @@
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
     "nodemon": "^1.19.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "sequelize": "^5.8.6",
-    "prop-types": "^15.7.2"
+    "sequelize": "^5.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
