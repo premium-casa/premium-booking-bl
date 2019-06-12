@@ -1,5 +1,5 @@
 const faker = require('faker');
-// const db = require('./index.js');
+const db = require('./index.js');
 
 const roomNameAppendix = ['\'s Apartment', '\'s House', '\'s Loft', '\'s Condo'];
 
@@ -46,27 +46,24 @@ function generateRandomRooms(num) {
 
 generateRandomRooms(100);
 
-// const createRoomData = () => {
-//   for (let i = 0; i < rooms.length; i += 1) {
-//     rooms[i].max_guest = JSON.stringify(rooms[i].max_guest);
-//   }
+const createRoomData = () => {
+  for (let i = 0; i < rooms.length; i += 1) {
+    rooms[i].max_guest = JSON.stringify(rooms[i].max_guest);
+  }
 
-// WE ARE NOT SAVING IT IN THE DB
-// rooms.forEach(data => (
-//   db.Room.create(data)
-//     .then(() => {
-//       // eslint-disable-next-line no-console
-//       console.log('success');
-//     })
-//     .catch((err) => {
-//       throw err;
-//     })
-// ));
+  rooms.forEach(data => (
+    db.Room.create(data)
+      .then(() => {
+      // eslint-disable-next-line no-console
+        console.log('success');
+      })
+      .catch((err) => {
+        throw err;
+      })
+  ));
+};
 
-// input csv script here generator here
-// };
-
-// createRoomData();
+createRoomData();
 
 module.exports = {
   rooms,

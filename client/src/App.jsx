@@ -49,15 +49,17 @@ export default class App extends React.Component {
           console.log(err);
         },
         success: (result) => {
-          this.updateRoomState(result);
+          // console.log(result)
+          this.updateBookedDates(result[1]);
+          this.updateRoomState(result[0]);
         },
       });
     } else {
-      const randomIntFromInterval = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-      };
+      // const randomIntFromInterval = (min, max) => {
+        // return Math.floor(Math.random() * (max - min + 1) + min);
+      // };
       $.ajax({
-        url: `/room?id=${randomIntFromInterval(1, 100)}`,
+        url: '/room?id=1',
         type: 'GET',
         error: (err) => {
           console.log(err);
@@ -98,7 +100,7 @@ export default class App extends React.Component {
 
   initialize() {
     this.getRoomData();
-    this.getBookingData();
+    // this.getBookingData();
   }
 
   handleRendering() {

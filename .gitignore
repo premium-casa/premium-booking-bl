@@ -9,3 +9,4 @@ bookingdata.csv
 noSQLBookingData.csv
 .DS_Store
 clover.xml
+package-lock.json
