@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "build": "webpack --config webpack.config.prod.js",
     "react-dev": "webpack -d --watch",
-    "seed": "node db/room_generater.js && node db/booking_generater.js"
+    "seed": "node db/room_generater.js && node db/booking_generater.js",
+    "stress": "artillery run stress.yaml"
   },
   "lint-staged": {
     "*.js": [
@@ -46,11 +47,14 @@
     "moment": "^2.24.0",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
+    "newrelic": "^5.9.1",
     "nodemon": "^1.19.0",
     "pg": "^7.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "redis": "^2.8.0",
+    "response-time": "^2.3.2",
     "sequelize": "^5.8.6"
   },
   "devDependencies": {

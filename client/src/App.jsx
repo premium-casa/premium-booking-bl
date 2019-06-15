@@ -43,23 +43,20 @@ export default class App extends React.Component {
     const link = window.location.href.match(/id\s*=\s*(.*)/);
     if (link) {
       $.ajax({
-        url: `/room?id=${link[1]}`,
+        url: `/room/?id=${link[1]}`,
         type: 'GET',
         error: (err) => {
           console.log(err);
         },
         success: (result) => {
-          // console.log(result)
-          this.updateBookedDates(result[1]);
+          console.log(result[0])
+          // this.updateBookedDates(result[1]);
           this.updateRoomState(result[0]);
         },
       });
     } else {
-      // const randomIntFromInterval = (min, max) => {
-        // return Math.floor(Math.random() * (max - min + 1) + min);
-      // };
       $.ajax({
-        url: '/room?id=1',
+        url: '/room/?id=1',
         type: 'GET',
         error: (err) => {
           console.log(err);
@@ -75,7 +72,7 @@ export default class App extends React.Component {
     const link = window.location.href.match(/id\s*=\s*(.*)/);
     if (link) {
       $.ajax({
-        url: `/booking?id=${link[1]}`,
+        url: `/booking/?id=${link[1]}`,
         type: 'GET',
         error: (err) => {
           console.log(err);
@@ -86,7 +83,7 @@ export default class App extends React.Component {
       });
     } else {
       $.ajax({
-        url: '/booking?id=1',
+        url: '/booking/?id=1',
         type: 'GET',
         error: (err) => {
           console.log(err);
@@ -100,7 +97,7 @@ export default class App extends React.Component {
 
   initialize() {
     this.getRoomData();
-    // this.getBookingData();
+    this.getBookingData();
   }
 
   handleRendering() {

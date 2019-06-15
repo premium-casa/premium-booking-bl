@@ -1,81 +1,54 @@
+require('newrelic');
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const responseTime = require('response-time');
 const db = require('../db/model.js');
-
 
 const app = express();
 const port = 3333;
+
+app.use(responseTime());
+
 app.use(express.static(path.join(__dirname, '../public/dist')));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('*.js', (req, res, next) => {
-  req.url = `${req.url}.gz`;
-  res.set('Content-Encoding', 'gzip');
-  next();
-});
-
 app.get('/room', db.getRoom);
+app.get('/booking', db.getBooking);
 app.post('/booking', db.postBooking);
 app.put('/booking', db.updateBooking);
 app.delete('/booking', db.deleteBooking);
 
-
-// app.get('/room', (req, res) => {
-//   db.Room.findAll({
-//     where: {
-//       id: req.query.id,
-//     },
-//   })
-//     .then((result) => {
-//       res.send(result[0].dataValues);
-//     })
-//     .catch(() => {
-//       res.sendStatus(500);
-//     });
-// });
-
-// app.get('/booking', (req, res) => {
-//   db.Booking.findAll({
-//     where: {
-//       roomId: req.query.id,
-//     },
-//   })
-//     .then((result) => {
-//       res.send(result);
-//     })
-//     .catch(() => {
-//       res.sendStatus(500);
-//     });
-// });
-
-
-// // making booking
-
-// app.post('/booking', (req, res) => {
-//   const data = {
-//     roomId: req.body.roomId,
-//     email: req.body.email,
-//     guests: req.body.guests,
-//     check_in: new Date(req.body.check_in),
-//     check_out: new Date(req.body.check_out),
-//     createdAt: new Date(req.body.createdAt),
-//   };
-
-
-//   db.Booking.create(data)
-//     .catch((err) => {
-//       console.log(`err: ${err}`);
-//       res.sendStatus(500);
-//     })
-//     .then(() => {
-//       console.log('Booking data is saved');
-//       res.sendStatus(200);
-//     });
-// });
-
 app.listen(port, () => {
   console.log(`Listening port: ${port}`);
 });
+
+// NODE CLUSTERING WHICH DROPS THE RPS
+// const cluster = require('cluster');
+// const numCPUs = require('os').cpus().length;
+// if (cluster.isMaster) {
+//   console.log(`Master ${process.pid} is running`);
+//   // Fork workers.
+//   for (let i = 0; i < numCPUs; i++) {
+//     cluster.fork();
+//   }
+//   cluster.on('exit', (worker, code, signal) => {
+//     console.log(`worker ${worker.process.pid} died`);
+//   });
+// } else {
+//   // Workers can share any TCP connection
+//   // In this case it is an HTTP server
+//   app.get('/room', db.getRoom);
+//   app.get('/booking', db.getBooking);
+//   app.post('/booking', db.postBooking);
+//   app.put('/booking', db.updateBooking);
+//   app.delete('/booking', db.deleteBooking);
+
+//   app.listen(port, () => {
+//     console.log(`Worker ${process.pid} started`);
+//     // console.log(`Listening port: ${port}`);
+//   });
+// }

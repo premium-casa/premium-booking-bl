@@ -1,0 +1,50 @@
+config:
+  target: 'http://127.0.0.1:3333'
+  phases:
+    - duration: 30
+      arrivalRate: 25
+    - duration: 30
+      arrivalRate: 50
+    - duration: 30
+      arrivalRate: 100
+    - duration: 30
+      arrivalRate: 200
+  processor: "./generateRandomData.js"
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - name: "Get Room"
+    weight: 40
+    flow:
+      - loop:
+          - function: generateRandomData
+          - get:
+              url: "/room/?id={{ randomId }}"
+        count: 10
+  - name: "Get bookings"
+    weight: 40
+    flow:
+      - loop:
+          - function: generateRandomData
+          - get: 
+              url: "/booking/?id={{ randomId }}"
+        count: 10
+  - name: "Make a booking"
+    weight: 15
+    flow:
+      - loop:
+          - function: generateRandomData
+          - post: 
+              url: "/booking?id={{ $randomNumber(1,10000000) }}"
+              json:
+                id: "{{ id }}"
+                email: "{{ email }}"
+                guest_adult: "{{ guest_adult }}"
+                guest_child: "{{ guest_child }}"
+                guest_infant: "{{ guest_infant }}"
+                check_in: "{{ check_in }}"
+                check_out: "{{ check_out }}"
+                roomid: "{{ roomid }}"
+        count: 5
+          # - log: "Sent a request to /booking with {{ id }}, {{ email }}, {{ guest_adult }}, {{ guest_child }}, {{ guest_infant }}, {{ check_in }}, {{ check_out }}"
