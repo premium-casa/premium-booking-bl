@@ -47,7 +47,8 @@ const getRoom = (req, res) => {
       res.send([obj]);
     } else {
       // GET FROM DB
-      pool.query(`SELECT roomname,price,cleaning_fee,service_fee,tax,max_adults,max_child,max_infants,min_night,max_night,rating,num_reviews FROM rooms WHERE id=${id}`, (error, data) => {
+      pool.query(`SELECT * FROM rooms WHERE id=${id}`, (error, data) => {
+        console.log(data)
         if (error) {
           res.sendStatus(404);
         } else {
