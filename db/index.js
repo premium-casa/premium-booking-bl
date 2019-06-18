@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('booking', 'root', 'yourpassword', {
-  host: 'localhost',
+const sequelize = new Sequelize('booking', 'postgres', 'password', {
+  host: 'ec2-52-53-177-193.us-west-1.compute.amazonaws.com',
   dialect: 'mysql',
 });
 

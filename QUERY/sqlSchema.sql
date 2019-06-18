@@ -1,11 +1,11 @@
 ----------------------------- POSTGRES SCHEMA ------------------------------------------------------------------
-CREATE TABLE rooms ( id SERIAL PRIMARY KEY,roomname text NOT NULL,price int NOT NULL,cleaning_fee int NOT NULL,service_fee int NOT NULL,tax int NOT NULL,max_adult int NOT NULL,max_child int NOT NULL,max_infant int NOT NULL,min_night int NOT NULL,max_night int NOT NULL,rating FLOAT NOT NULL,num_reviews int NOT NULL);
+CREATE TABLE rooms ( id int PRIMARY KEY,roomname text,price int,cleaning_fee int,service_fee int,tax int,max_adult int,max_child int,max_infant int,min_night int,max_night int,rating FLOAT,num_reviews int);
 
-INSERT INTO rooms(roomname,price,cleaning_fee,service_fee,tax,max_adult,max_child,max_infant,min_night,max_night,rating,num_reviews) VALUES ('brians room',5,5,5,5,5,5,5,5,5,5.3,5 );
+INSERT INTO rooms(id, roomname,price,cleaning_fee,service_fee,tax,max_adult,max_child,max_infant,min_night,max_night,rating,num_reviews) VALUES (1,'brians room',5,5,5,5,5,5,5,5,5,5.3,5 );
 
-CREATE TABLE booking ( id SERIAL PRIMARY KEY, email text NOT NULL, guest_adult int NOT NULL, guest_child int NOT NULL, guest_infants int NOT NULL, roomid int REFERENCES rooms(id));
+CREATE TABLE booking ( id int PRIMARY KEY, email text NOT NULL, guest_adult int NOT NULL, guest_child int NOT NULL, guest_infant int NOT NULL, check_in date NOT NULL, check_out date NOT NULL, roomid int REFERENCES rooms(id));
 
-INSERT INTO booking (email,guest_adult,guest_child,guest_infants,roomid) VALUES('brian@gmail.com',3,3,3,1);
+INSERT INTO booking (id,email, guest_adult,guest_child,guest_infant, check_in, check_out, roomid) VALUES(1,'brian@gmail.com',3,3,3,'2018-09-09', '2019-09-09',1);
 
 CREATE TABLE calendar ( id SERIAL PRIMARY KEY, day date NOT NULL, bookid int REFERENCES booking(id), roomid int REFERENCES rooms(id));
 

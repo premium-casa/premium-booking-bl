@@ -10,5 +10,6 @@ noSQLBookingData.csv
 .DS_Store
 clover.xml
 package-lock.json
-newrelic.js
 newrelic_agent.log
+clover.xml
+bookingdata1.csv
